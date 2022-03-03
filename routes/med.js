@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const fs = require("fs");
-const meds = JSON.parse(fs.readFileSync("./data/medicaments.json", "utf-8"));
 const Med = require("../model/med");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -17,17 +16,6 @@ router.get("/", async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
-});
-
-router.post("/loadMeds", (req, res) => {
-  req.body = meds;
-  Med.insertMany(req.body)
-    .then((med) => {
-      res.status(201).send(med);
-    })
-    .catch((error) => {
-      res.status(400).send(error);
-    });
 });
 
 module.exports = router;

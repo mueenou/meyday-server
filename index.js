@@ -8,10 +8,8 @@ const cors = require("cors");
 dotenv.config();
 console.log(process.env.DB_CONNECT);
 // Connect to DB
-mongoose.connect(
-  "mongodb+srv://mueen:Mueen-932@cluster0.u6fqq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  { useNewUrlParser: true },
-  () => console.log("connected to DB!")
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () =>
+  console.log("connected to DB!")
 );
 
 // Middlewares
